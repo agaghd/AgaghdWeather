@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+        
+        <ImageView
+            android:id="@+id/splash_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_launcher"	/>
+        "
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"  
+            android:text="酷欧天气"
+            android:textColor="#FFF"
+            android:textSize="30sp"	/>
+        "
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+        
+         <TextView
+            android:id="@+id/season"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           
+            android:text="WQNMLGBD"       
+            android:textColor="#FFF"
+            android:textSize="60sp"	
+          />
+        
+         <TextView
+            android:id="@+id/season_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                  
+            android:textColor="#FFF"
+            android:textSize="40sp"	/>
+        
+    </LinearLayout>
+
+</RelativeLayout>
