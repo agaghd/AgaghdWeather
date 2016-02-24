@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import ofs.ahd.dii.br.AdSize;
 import ofs.ahd.dii.br.AdView;
+import ofs.ahd.dii.video.w;
 
 import com.agaghdweather.app.db.CoolWeatherOpenHelper;
 import com.agaghdweather.app.model.City;
@@ -20,7 +21,7 @@ import com.agaghdweather.app.util.HttpCallbackListener;
 import com.agaghdweather.app.util.HttpUtil;
 import com.agaghdweather.app.util.MyApplication;
 import com.agaghdweather.app.util.Utility;
-import com.coolweather.app.R;
+import com.agaghdweather.app.R;
 
 import android.R.integer;
 import android.app.Activity;
@@ -55,6 +56,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +86,14 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 	private LinearLayout twodayLayout;
 	private LinearLayout threedayLayout;
 	private DrawerLayout drawerLayout;
+	
+ 
+	/**
+	 * 天气背景
+	 */
+	
+	private RelativeLayout weatherBackgroundLayout;
+	
 	/**
 	 * 用于显示城市名
 	 */
@@ -296,6 +306,7 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 		 * 初始化各控件
 		 */
 		drawerLayout = (DrawerLayout) findViewById(R.id.id_drawerlayout);
+		weatherBackgroundLayout = (RelativeLayout) findViewById(R.id.weatherback);
 		
 		todayLayout = (LinearLayout) findViewById (R.id.today_layout);
 		onedayLayout = (LinearLayout) findViewById (R.id.one_day_layout);
@@ -606,6 +617,8 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 		
 		cityNameText.setVisibility(View.VISIBLE);
 		
+		changeWeatherBackground(weatherText);
+		
 		showNotice();
 	
 		
@@ -624,6 +637,68 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 		
 		
 		
+	}
+	
+	/**
+	 * 
+	 */
+	private  void changeWeatherBackground(String weatherText) {
+		
+		if (("小雨".equals(weatherText)) || ("中雨".equals(weatherText)) ||
+				("阵雨".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.rain));					
+			//小到中雨的背景
+			
+		} else if (("大雨".equals(weatherText)) || ("暴雨".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.rainstorm));
+			//大雨和暴雨的背景
+			
+		} else if (("雷雨".equals(weatherText)) || ("雷阵雨".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.thunder));
+			//雷雨和雷阵雨的背景
+			
+		} else if (("小雪".equals(weatherText)) || ("中雪".equals(weatherText))
+				|| ("大雪".equals(weatherText)) || ("暴雪".equals(weatherText))
+				|| ("阵雪".equals(weatherText)) || ("雨夹雪".equals(weatherText))
+				|| ("雨加雪".equals(weatherText)) || ("雪".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.snow));
+			//所有下雪的背景
+			
+		} else if (("雾".equals(weatherText)) || ("霾".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.fog));
+			//雾霾的背景
+			
+		} else if (("冰雹".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.hailstone));
+			//冰雹的背景
+			
+		} else if (("沙尘暴".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.sandstorm));
+			//沙尘暴的背景
+			
+		} else if (("多云".equals(weatherText)) || ("少云".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.cloud));
+			//有云时的背景
+			
+		}  else if (("阴".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.overcast));
+			//阴天的背景
+			
+		} else if (("晴".equals(weatherText))) {
+			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+					.getDrawable(R.drawable.sun));
+			//晴天的背景
+			
+		}
 	}
 	
 	/**

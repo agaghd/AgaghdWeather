@@ -3,7 +3,7 @@ package com.agaghdweather.app.model;
 import java.util.List;
 
 import com.agaghdweather.app.util.MyApplication;
-import com.coolweather.app.R;
+import com.agaghdweather.app.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

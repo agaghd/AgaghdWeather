@@ -136,7 +136,7 @@ public class Utility {
 			JSONObject jsonObject = new JSONObject(response);
 			JSONObject data = jsonObject.getJSONObject("data");
 			String city = data.getString("city");			//获取城市名
-			
+			String coldAlert = data.getString("ganmao");	//获取感冒预警信息
 			JSONArray jsonArray = data.getJSONArray("forecast");//获取5天内的天气信息
 			
 			JSONObject todayWeather = jsonArray.getJSONObject(0);	//获取当天天气信息
@@ -160,7 +160,7 @@ public class Utility {
 			String low3 = threeDayWeather.getString("low");			//获取最低气温
 
 			//存储各日的天气信息
-			saveWeatherInfo2 (0, context, weatherCode, city, type, low, high,
+			saveWeatherInfo2 (0, context, weatherCode, city, coldAlert, type, low, high,
 					type1, low1, high1,
 					type2, low2, high2,
 					type3, low3, high3);	
@@ -178,7 +178,7 @@ public class Utility {
 
 
 	private static void saveWeatherInfo2(int day, Context context,
-			String weatherCode, String city, String type, String low, String high,
+			String weatherCode, String city, String coldAlert, String type, String low, String high,
 			String type1, String low1, String high1,
 			String type2, String low2, String high2,
 			String type3, String low3, String high3) {

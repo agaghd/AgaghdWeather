@@ -2,7 +2,7 @@ package com.agaghdweather.app.service;
 
 import com.agaghdweather.app.activity.NewWeatherActivity;
 import com.agaghdweather.app.util.MyApplication;
-import com.coolweather.app.R;
+import com.agaghdweather.app.R;
 
 import android.app.Service;  
 

@@ -4,7 +4,7 @@ import com.agaghdweather.app.service.AutoUpdateService;
 import com.agaghdweather.app.util.HttpCallbackListener;
 import com.agaghdweather.app.util.HttpUtil;
 import com.agaghdweather.app.util.Utility;
-import com.coolweather.app.R;
+import com.agaghdweather.app.R;
 
 import android.app.Activity;
 import android.content.Intent;

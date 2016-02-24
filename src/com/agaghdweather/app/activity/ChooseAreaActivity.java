@@ -11,7 +11,7 @@ import com.agaghdweather.app.model.SpecialCity;
 import com.agaghdweather.app.util.HttpCallbackListener;
 import com.agaghdweather.app.util.HttpUtil;
 import com.agaghdweather.app.util.Utility;
-import com.coolweather.app.R;
+import com.agaghdweather.app.R;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;

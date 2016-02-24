@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.coolweather.app.R;
+import com.agaghdweather.app.R;
 
 
 public class SplashActivity  extends Activity {
@@ -99,7 +99,7 @@ public class SplashActivity  extends Activity {
 		
 		 //有米广告 初始化应用信息
 		 
-		 AdManager.getInstance(this).init("4c62e52a585e61e9", "526b72930ae45e92", false);
+		 AdManager.getInstance(this).init("6f1c9046a39abdce", "56c32327daaec1de", false);
 		 
 		mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 3000);//3秒跳转
 		//Toast.makeText(this, "HHHHH " + mMonth , Toast.LENGTH_LONG).show();
