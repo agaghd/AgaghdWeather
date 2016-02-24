@@ -54,7 +54,7 @@
 	        android:layout_height="0dp"
 	        android:layout_weight="6"
 	        android:layout_margin="3dp"
-	        android:background="#00AAAA"
+	        android:background="#484E61"
 	       	>
 	        
 	        <TextView
@@ -142,13 +142,23 @@
 	            </LinearLayout>
 	                
 	        </LinearLayout>
+	        
+	        <TextView
+	                    android:id="@+id/cold_alert"
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:layout_centerInParent="true"
+	                    android:layout_alignParentBottom="true"	                    
+	                    android:textColor="#FFF"
+	                    android:textSize="18sp"	/>
+	        
 	     </RelativeLayout>
 	     
 	     <LinearLayout 
 	        android:layout_width="match_parent"
 	        android:layout_height="0dp"
 	        android:layout_weight="1"
-	        android:background="#00AAAA"
+	        android:background="#484E61"
 	        android:layout_marginLeft="3dp"
 	        android:layout_marginRight="3dp"
 	        android:orientation="vertical">
@@ -170,8 +180,7 @@
 	        android:layout_weight="3"
 	        android:background="#FFFFFF"
 	        android:layout_margin="3dp"
-	        android:orientation="horizontal"
-	       
+	        android:orientation="horizontal"	       
 	        >
 	        
 	        <LinearLayout 
@@ -179,20 +188,19 @@
 	            android:layout_width="0dp"
 	            android:layout_height="match_parent"
 	            android:layout_weight="1"
-	            android:gravity="center"
-	           
+	            android:gravity="center"	           
 	            android:layout_alignParentLeft="true"
 	            android:layout_centerInParent="true"
-	            android:layout_marginRight="3dp"
-	            
-	            android:background="#00AAAA"
+	            android:layout_marginRight="3dp"            
+	            android:background="#484E61"
 	            android:orientation="vertical">
 	            
 	            <TextView 
+	                android:id="@+id/date1"
 	                android:layout_width="match_parent"
 	                android:layout_height="wrap_content"
 	                android:layout_centerInParent="true"
-	                android:text="明天"
+	                
 	                android:gravity="center"
 	                android:textColor="#FFF"
 	                android:textSize="18sp"
@@ -218,9 +226,7 @@
 	                />
           
 	        </LinearLayout>
-	        
-	        
-	        
+	        	        	        
 	         <LinearLayout 
 	            android:id="@+id/two_day_layout"
 	            android:layout_width="0dp"
@@ -229,15 +235,16 @@
 	            android:gravity="center"
 	            android:layout_centerInParent="true"
 	            
-	             android:background="#00AAAA"
+	            android:background="#484E61"
 	            android:orientation="vertical">
 	            
 	             
 	              <TextView 
+	                android:id="@+id/date2"
 	                android:layout_width="match_parent"
 	                android:layout_height="wrap_content"
 	                android:layout_centerInParent="true"
-	                android:text="后天"
+	               
 	                android:gravity="center"
 	                android:textColor="#FFF"
 	                android:textSize="18sp"
@@ -260,9 +267,6 @@
 	                android:textColor="#FFF"
 	                android:textSize="18sp"
 	                />
-	             
-	             
-	              
 	              
 	        </LinearLayout>
 	        
@@ -276,17 +280,18 @@
 	            android:layout_centerInParent="true"
 	            android:layout_marginLeft="3dp"
 	            
-	            android:background="#00AAAA"
+	            android:background="#484E61"
 	            android:orientation="vertical">
 	              
 	               <TextView 
-	                android:layout_width="match_parent"
-	                android:layout_height="wrap_content"
-	                android:layout_centerInParent="true"
-	                android:text="大后天"
-	                android:gravity="center"
-	                android:textColor="#FFF"
-	                android:textSize="18sp"
+	                   android:id="@+id/date3"
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content"
+		                android:layout_centerInParent="true"
+		               
+		                android:gravity="center"
+		                android:textColor="#FFF"
+		                android:textSize="18sp"
 	                />
 	            
 	            <TextView 
@@ -316,7 +321,7 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="0dp"
 	        android:layout_weight="1"
-	        android:background="#00AAAA"
+	        android:background="#484E61"
 	        android:layout_marginLeft="3dp"
 	        android:layout_marginRight="3dp"
 	        android:layout_marginBottom="3dp"

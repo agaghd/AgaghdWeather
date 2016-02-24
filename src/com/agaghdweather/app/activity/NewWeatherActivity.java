@@ -94,6 +94,7 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 	
 	private RelativeLayout weatherBackgroundLayout;
 	
+	
 	/**
 	 * 用于显示城市名
 	 */
@@ -191,10 +192,20 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 	private TextView tempRange2;	
 	private TextView tempRange3;	
 	
+	
+	
 	/**
-	 * 用于显示当前日期
+	 * 用于显示当前及未来三天日期
 	 */
 	private TextView currentDateText;
+	private TextView date1Text;
+	private TextView date2Text;
+	private TextView date3Text;
+	
+	/**
+	 * 显示感冒小贴士
+	 */
+	private TextView coldAlertTextView;
 	
 	/**
 	 * 切换城市按钮
@@ -224,7 +235,7 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 	String countyCode;
 	
 	/**
-	 * 城市 天气 温度
+	 * 城市 天气 温度 日期 感冒指数
 	 */
 	
 	String cityName;
@@ -239,6 +250,11 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 	String temperRange2;
 	String temperRange3;
 	
+	String date1;
+	String date2;
+	String date3;
+	
+	String coldAlert;
 	/**
 	 * 数据库
 	 * 
@@ -323,12 +339,16 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 		tempRange2 = (TextView) findViewById (R.id.temp_range2);
 		tempRange3 = (TextView) findViewById (R.id.temp_range3);
 		
-		
+		date1Text = (TextView) findViewById(R.id.date1);
+		date2Text = (TextView) findViewById(R.id.date2);
+		date3Text = (TextView) findViewById(R.id.date3);
 		
 		cityNameText = (TextView) findViewById (R.id.city_name);
 		publishText = (TextView) findViewById (R.id.publish_text);
 		
 		currentDateText = (TextView) findViewById (R.id.current_date);
+		
+		coldAlertTextView = (TextView) findViewById(R.id.cold_alert);
 		
 		switchCity = (Button) findViewById (R.id.switch_city);
 		refreshWeather = (Button) findViewById (R.id.refresh_weather);
@@ -563,11 +583,16 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 	private void readWeatherInfo() {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		cityName = prefs.getString("city", "");
+		coldAlert = prefs.getString("coldAlert", "");
 		
 		weatherText = prefs.getString("type", "");
 		weatherText1 = prefs.getString("type1", "");
 		weatherText2 = prefs.getString("type2", "");
 		weatherText3 = prefs.getString("type3", "");
+		
+		date1 = prefs.getString("date1", "");
+		date2 = prefs.getString("date2", "");
+		date3 = prefs.getString("date3", "");
 		
 		temperRange = divideTemp(prefs.getString("low", ""), prefs.getString("high", ""));
 		temperRange1 = divideTemp(prefs.getString("low1", ""), prefs.getString("high1", ""));
@@ -595,6 +620,7 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 		
 		cityNameText.setText(cityName);
 		publishText.setText("今天天气");
+		coldAlertTextView.setText(coldAlert);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年M月d日",Locale.CHINA);
 		currentDateText.setText(sdf.format(new Date()));
@@ -609,6 +635,9 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 		tempRange2.setText(temperRange2);
 		tempRange3.setText(temperRange3);
 		
+		date1Text.setText(date1);
+		date2Text.setText(date2);
+		date3Text.setText(date3);
 		
 		todayLayout.setVisibility(View.VISIBLE);
 		onedayLayout.setVisibility(View.VISIBLE);
@@ -617,7 +646,10 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 		
 		cityNameText.setVisibility(View.VISIBLE);
 		
-		changeWeatherBackground(weatherText);
+		changeWeatherBackground(weatherText, weatherBackgroundLayout);
+		changeWeatherBackground(weatherText1, onedayLayout);
+		changeWeatherBackground(weatherText2, twodayLayout);
+		changeWeatherBackground(weatherText3, threedayLayout);
 		
 		showNotice();
 	
@@ -642,21 +674,21 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 	/**
 	 * 
 	 */
-	private  void changeWeatherBackground(String weatherText) {
+	private  void changeWeatherBackground(String weatherText, View layoutView) {
 		
 		if (("小雨".equals(weatherText)) || ("中雨".equals(weatherText)) ||
 				("阵雨".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.rain));					
 			//小到中雨的背景
 			
 		} else if (("大雨".equals(weatherText)) || ("暴雨".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.rainstorm));
 			//大雨和暴雨的背景
 			
 		} else if (("雷雨".equals(weatherText)) || ("雷阵雨".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.thunder));
 			//雷雨和雷阵雨的背景
 			
@@ -664,37 +696,37 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 				|| ("大雪".equals(weatherText)) || ("暴雪".equals(weatherText))
 				|| ("阵雪".equals(weatherText)) || ("雨夹雪".equals(weatherText))
 				|| ("雨加雪".equals(weatherText)) || ("雪".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.snow));
 			//所有下雪的背景
 			
 		} else if (("雾".equals(weatherText)) || ("霾".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.fog));
 			//雾霾的背景
 			
 		} else if (("冰雹".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.hailstone));
 			//冰雹的背景
 			
 		} else if (("沙尘暴".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.sandstorm));
 			//沙尘暴的背景
 			
 		} else if (("多云".equals(weatherText)) || ("少云".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.cloud));
 			//有云时的背景
 			
 		}  else if (("阴".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.overcast));
 			//阴天的背景
 			
 		} else if (("晴".equals(weatherText))) {
-			weatherBackgroundLayout.setBackground(NewWeatherActivity.this.getResources()
+			layoutView.setBackground(NewWeatherActivity.this.getResources()
 					.getDrawable(R.drawable.sun));
 			//晴天的背景
 			

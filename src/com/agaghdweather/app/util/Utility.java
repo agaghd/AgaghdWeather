@@ -144,26 +144,30 @@ public class Utility {
 			String high = todayWeather.getString("high");		//获取最高气温
 			String low = todayWeather.getString("low");			//获取最低气温
 			
+			
 			JSONObject oneDayWeather = jsonArray.getJSONObject(1);	//获取未来第一天的天气信息
 			String type1 = oneDayWeather.getString("type");		//获取天气类型
 			String high1 = oneDayWeather.getString("high");		//获取最高气温
 			String low1 = oneDayWeather.getString("low");			//获取最低气温
+			String date1 = oneDayWeather.getString("date");			//获取日期
 			
 			JSONObject twoDayWeather = jsonArray.getJSONObject(2);	//获取未来第二天的天气信息
 			String type2 = twoDayWeather.getString("type");		//获取天气类型
 			String high2= twoDayWeather.getString("high");		//获取最高气温
 			String low2 = twoDayWeather.getString("low");			//获取最低气温
+			String date2 = twoDayWeather.getString("date");			//获取日期
 			
 			JSONObject threeDayWeather = jsonArray.getJSONObject(3);	//获取未来第二天的天气信息
 			String type3 = threeDayWeather.getString("type");		//获取天气类型
 			String high3= threeDayWeather.getString("high");		//获取最高气温
 			String low3 = threeDayWeather.getString("low");			//获取最低气温
+			String date3 = threeDayWeather.getString("date");			//获取日期
 
 			//存储各日的天气信息
 			saveWeatherInfo2 (0, context, weatherCode, city, coldAlert, type, low, high,
-					type1, low1, high1,
-					type2, low2, high2,
-					type3, low3, high3);	
+					type1, low1, high1, date1,
+					type2, low2, high2, date2,
+					type3, low3, high3, date3);	
 			
 			
 		} catch (JSONException e) {
@@ -179,14 +183,15 @@ public class Utility {
 
 	private static void saveWeatherInfo2(int day, Context context,
 			String weatherCode, String city, String coldAlert, String type, String low, String high,
-			String type1, String low1, String high1,
-			String type2, String low2, String high2,
-			String type3, String low3, String high3) {
+			String type1, String low1, String high1, String date1,
+			String type2, String low2, String high2, String date2,
+			String type3, String low3, String high3, String date3) {
 		SharedPreferences.Editor editor = PreferenceManager
 				.getDefaultSharedPreferences(context).edit();
 		editor.putBoolean("city_selected", true);
 		editor.putString("city", city);
 		editor.putString("weather_code", weatherCode);
+		editor.putString("coldAlert", coldAlert);
 		
 		editor.putString("low", low);
 		editor.putString("high", high);
@@ -195,14 +200,17 @@ public class Utility {
 		editor.putString("low1", low1);
 		editor.putString("high1", high1);
 		editor.putString("type1", type1);
+		editor.putString("date1", date1);
 		
 		editor.putString("low2", low2);
 		editor.putString("high2", high2);
 		editor.putString("type2", type2);
+		editor.putString("date2", date2);
 		
 		editor.putString("low3", low3);
 		editor.putString("high3", high3);
 		editor.putString("type3", type3);
+		editor.putString("date3", date3);
 		
 		editor.commit();
 		
