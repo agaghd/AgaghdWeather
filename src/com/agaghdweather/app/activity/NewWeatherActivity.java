@@ -463,7 +463,7 @@ public class NewWeatherActivity extends Activity implements OnClickListener{
 			if (showFloatWindow.isChecked()) {
 				
 				Toast.makeText(NewWeatherActivity.this, 
-                		"若悬浮窗没有显示，请在设置-应用-找到酷欧天气，将显示悬浮框设置为true",
+                		"若悬浮窗没有显示，请在设置-应用-找到酷看天气，并将显示悬浮框设置为true",
                 		Toast.LENGTH_LONG).show();
 				
 				Intent intentShowFloat = new Intent(NewWeatherActivity.this, FxService.class);  
